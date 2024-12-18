@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Model Evaluation!</title>
+	<meta name="description" content="Model Evaluation" />
+	<!-- <link rel="icon" type="image/x-icon" href="./favicon.ico"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="./style.css" />
+	<style>
+		#scrolly {
+			position: relative;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			background-color: var(--main-bg-color);
+			padding: 1rem;
+			max-width: 90vw;
+			margin: auto;
+			margin-bottom:30vh;
+		}
+
+		#scrolly>* {
+			-webkit-box-flex: 1;
+			-ms-flex: 1;
+			flex: 1;
+		}
+
+		article {
+			position: relative;
+			padding: 0 1rem;
+			max-width: 30rem;
+		}
+
+		figure {
+			position: -webkit-sticky;
+			position: sticky;
+			width: 100%;
+			margin: 0;
+			-webkit-transform: translate3d(0, 0, 0);
+			-moz-transform: translate3d(0, 0, 0);
+			transform: translate3d(0, 0, 0);
+			z-index: 0;
+		}
+
+		figure p {
+			text-align: center;
+			padding: 1rem;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			-moz-transform: translate(-50%, -50%);
+			-webkit-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+			font-size: 8rem;
+			font-weight: 900;
+			color: rgba(0, 0, 0, 0);
+		}
+
+		.step {
+			margin: 0 auto 2rem auto;
+			color: #3b3b3b;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			/* Vertically center the content */
+			align-items: center;
+			/* Horizontally center the content */
+		}
+
+		.step:last-child {
+			margin-bottom: 0;
+		}
+
+		.step p {
+			padding: 1rem;
+			font-size: 1.5rem;
+		}
+
+		.radial-tree-svg {
+			max-width: 42vw;
+			margin: auto;
+			margin-right: 0;
+			animation-name: ckw;
+			animation-duration: 45.5s;
+			animation-iteration-count: infinite;
+			animation-timing-function: linear;
+		}
+	</style>
+</head>
+
+<body>
+	<main>
+		<section id="intro">
+			<div class="intro-container">
+				<div class="intro-left">
+					<h1 class="intro-title" style="text-align: center;">Model Evaluation</h1>
+					<p class="intro-subtitle" style="text-align: center;">An interactive explainer for how to measure model performance.</p>
+					<br />
+					<p class="intro-subtitle" style="text-align: center;">Created by <a href='https://www.lucasgover.com'>Lucas Gover</a></p>
+					<!-- <br />
+					<p class="intro-subtitle">*This is primarily a visualization excersize.</p> -->
+				</div>
+				<div class="intro-right">
+					<svg class="radial-tree-svg"></svg>
+				</div>
+			</div>
+		</section>
+
+		<section id="scrolly">
+			<article>
+				<div class="step" data-step="1">
+					<div class="text-header">The Premise</div>
+					<p class="text-body">
+						Alex, a Democratic candidate, is evaluating three models to determine how to
+						target her door-to-door canvassing effort.
+						Alex surveyed 100 people in her district and is now using this information to evaluate three
+						models.
+					</p>
+					<ul class="text-body" style="font-size: 20pt; font-weight: 400;">
+						<li>Climate Score</li>
+						<li>Cat Favorability Score</li>
+						<li>Party Score</li>
+					</ul>
+					<p class="text-hint">
+						Click on a score button to change which score voters are arranged by.
+					</p>
+				</div>
+				<div class="step" data-step="2">
+					<p>
+						Alex's poll asked each person whether they supported her, or her opponent.
+						<span style="color: #10019E; font-weight:700">Blue dots</span> represent Alex’s supporters.
+						<span style="color: #B30000; font-weight:700">Red dots</span> represent people who support her
+						opponent.
+					</p>
+					<p class="text-hint">
+						Click on a score button to change which score voters are arranged by.
+					</p>
+				</div>
+				<div class="step" data-step="3">
+					<div class="text-header">Distribution</div>
+					<p class="text-body">
+						The distribution chart shows how many individuals are at each point in the score range.
+					</p>
+				</div>
+				<div class="step" data-step="4">
+					<div class="text-header">Validation</div>
+					<p class="text-body">
+						Validation charts are useful to see how well a model is measuring the probability a person is a supporter.
+						In a perfect validation, 50% of the people with a score
+						of 50 are supporters, and 25% of the people with a score of 25 are supporters.
+					</p>
+					<br/>
+					<p class="text-body">We want the validation to show a stairstep pattern, where the % of individuals in the positive class aligns with the score range.</p>
+				</div>
+				<div class="step" data-step="5">
+					<div class="text-header">Classification</div>
+					<p class="text-body">
+						For Alex, this model is primarily used for classification. Everyone to the left of the line is
+						classified as a supporter,
+						everyone to the right is classified as supporting her opponent.
+					</p>
+				</div>
+				<div class="step" data-step="6">
+					<p class='rate-calculation' id="percentage-of-population" style="text-align: center;">Alex can make make the classification cut at different points. This universe
+						contains 0% of the
+						population</p>
+					<p class='rate-calculation' id="number-of-fp" style="text-align: center;">0% of this universe is
+						classified incorrectly</p>
+					<p class="text-hint">
+						Move the cursor left to right across the chart to classify the chart at different spots.
+					</p>
+				</div>
+				<div class="step" data-step="7">
+					<div class="text-header">Confusion Matrix</div>
+					<p class="text-body">To get a complete picture of this model performance, Alex could look at a
+						confusion matrix, to evaluate how this model is performing at different confusion-matrix. </p>
+					<svg id="confusion-matrix"></svg>
+					<p class="text-hint">
+						Click around on the graph to view the confusion matrix at different cuts.
+					</p>
+				</div>
+				<div class="step" data-step="8">
+					<p class="text-body">
+						Another useful way to look at this is <span class="black-text">True Positive Rate</span>, and
+						the <span class="black-text">False Positive Rate</span>.
+						The <span class="black-text">True Positive Rate</span> is defined as
+						<em>TP / (TP + FN)</em>, or in other words, out of all the supporters, how many are currently
+						classified as supporters.
+						<br/>
+						<br/>
+						The <span class="black-text">False Positive Rate</span> measures out of all the non-supporters,
+						how many are classified as supporters, or <em>FN / (TN + FP)</em>.
+					</p>
+
+					<p class='rate-calculation' id="true-positive-rate" style="padding-bottom:0">True Positive Rate =
+						0.00%</p>
+					<p class='rate-calculation' id="false-positive-rate">False Positive Rate = 0.00%</p>
+					<p class="text-hint">
+						Click around on the chart to measure the TPR and the FPR at different cuts.
+					</p>
+				</div>
+				<div class="step" data-step="8">
+					<div class="text-header">The ROC</div>
+					<p class="text-body">
+					Plotting these numbers against each other creates a Reciever Operating Characteristic, or ROC.
+					At each cut, you can plot the false positive rate on the X axis, and the true positive rate on the Y axis.
+					This method to measure how well a score rank orders predictions.
+					</p>
+					<p class='rate-calculation' id="true-positive-rate2" style="padding-bottom:0">True Positive Rate =
+						0.00%</p>
+					<p class='rate-calculation' id="false-positive-rate2">False Positive Rate = 0.00%</p>
+					<svg id="initial-roc-chart"></svg>
+					<p class="text-hint">
+						Click around on the chart to plot the TPR and the FPR at different cuts.
+					</p>
+				</div>
+				<div class="step" data-step="9">
+					<div class="text-header">Area Under Curve</div>
+					<p class="text-body">
+					To measure how well a model rank orders voters, we look at the Area Under the Curve (AUC). For a very accurate model, the ROC will fill the entire graph, scoring an AUC of 1. But if the model isn't performing well, it will only cover about half the chart, with an AUC around 0.5.
+					</p>
+					<svg id="roc-chart"></svg>
+				</div>
+			</article>
+
+			<figure>
+				<svg id="classification-stationary" width="100%" height="100%"></svg>
+			</figure>
+		</section>
+		<section id='outro'>
+			<div class="text-header" style='text-align:center'>Thanks for reading!</div>
+		</section>
+	</main>
+
+	<!-- <div class='debug'></div> -->
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+	<script src="./scrollama.min.js"></script>
+	<script src="./radial-tree.js"></script>
+	<script src="scrolly-graph.js"></script>
+	<script>
+		// using d3 for convenience
+		var main = d3.select("main");
+		var scrolly = main.select("#scrolly");
+		var figure = scrolly.select("figure");
+		var article = scrolly.select("article");
+		var step = article.selectAll(".step");
+
+		// initialize the scrollama
+		var scroller = scrollama();
+
+		// generic window resize listener event
+		function handleResize() {
+			// 1. update height of step elements
+			var stepH = Math.floor(window.innerHeight * 1);
+			step.style("height", stepH + "px");
+
+			var figureHeight = window.innerHeight / 2;
+			var figureMarginTop = (window.innerHeight - figureHeight) / 2;
+
+			figure
+				.style("height", figureHeight + "px")
+				.style("top", figureMarginTop + "px");
+
+			// 3. tell scrollama to update new element dimensions
+			scroller.resize();
+		}
+
+		// scrollama event handlers
+		function handleStepEnter(response) {
+			console.log(response);
+			// response = { element, direction, index }
+			switch (response.index) {
+				case 0:
+					window.step0();
+					break;
+				case 1:
+					window.step1();
+					break;
+				case 2:
+					window.step2();
+					break;
+				case 3:
+					window.step3();
+					break;
+				case 4:
+					window.step4();
+					break;
+				case 5:
+					window.step5();
+					break;
+				case 6:
+					window.step6();
+					break;
+				case 7:
+					window.step7();
+					break;
+				case 8:
+					window.step8();
+					break;
+				case 9:
+					window.step9();
+					break;
+				default:
+					window.step1();
+			}
+
+			// add color to current step only
+			step.classed("is-active", function (d, i) {
+				return i === response.index;
+			});
+
+			// update graphic based on step
+			figure.select("p").text(response.index + 1);
+		}
+
+		function init() {
+			// 1. force a resize on load to ensure proper dimensions are sent to scrollama
+			handleResize();
+
+			// 2. setup the scroller passing options
+			//      this will also initialize trigger observations
+			// 3. bind scrollama event handlers (this can be chained like below)
+			scroller
+				.setup({
+					step: "#scrolly article .step",
+					offset: 0.33,
+					debug: false
+				})
+				.onStepEnter(handleStepEnter);
+		}
+
+		// Load the scrolly-graph.js script and then initialize
+		var script = document.createElement('script');
+		script.src = 'scrolly-graph.js';
+		script.onload = init;
+		document.head.appendChild(script);
+
+		// Load the scrolly-graph.js script and then initialize
+		var script2 = document.createElement('script');
+		script2.src = 'scrolly-graph.js';
+		script2.onload = init;
+		document.head.appendChild(script);
+	</script>
+
+</body>
+
+</html>
+

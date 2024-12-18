@@ -1,0 +1,284 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/*************************************************************************************/
+
+:root {
+  --main-bg-color: #fff;/**#F3F4F5;*/
+  --ccl-light-gray: #F3F4F5;
+}
+
+body {
+  font-family: 'Lato',-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #3b3b3b;
+  font-size: 24px;
+  background-color: var(--main-bg-color);
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+a {
+  margin: 0;
+  font-weight: 400;
+}
+
+a,
+a:visited,
+a:hover {
+  color: teal;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+}
+
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  background: #fff;
+  padding: 1rem;
+  padding-right: 5rem;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+#outro {
+  height: 340px;
+  background: #efefef;
+margin:0px;
+}
+
+@media (min-width: 840px) {
+  .nav__examples {
+    margin-top: 0;
+    margin-left: 2rem;
+  }
+}
+#intro {
+  background: #efefef;
+}
+.intro-container {
+  width: 80vw;
+  height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center; /* Align items vertically */
+}
+.intro-left {
+  width: 30%;
+  height: fit-content;
+}
+
+.intro-right {
+  flex-grow: 1; /* Allow the right section to take the remaining space */
+  display: flex;
+  justify-content: flex-end; /* Align SVG to the right */
+}
+
+.intro-title {
+  font-weight: 700;
+  font-size: 8vh;
+  color: #333;
+  padding: 100px 0;
+  padding-bottom: 20px;
+}
+.intro-subtitle {
+  font-size: 2vh;
+}
+
+@keyframes ckw {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+.scroll-button {
+  font-weight: 100;
+  font-size: .9rem;
+  color:var(--main-bg-color);
+  fill: #242424;
+  border: 1px solid #242424;
+}
+
+#beginning {
+  background-color: var(--ccl-light-gray);
+  height: 20vw;
+}
+
+.black-text {
+  color: #111;
+  font-weight: 600;
+}
+
+.text-header {
+  font-weight: 400;
+  font-size: calc(1.4 * 1.2vw + 1rem);
+  color: #333;
+  padding: 100px 0;
+  padding-bottom: 20px;
+}
+
+.text-body {
+  font-size: calc(0.8 * 1.2vw + 1rem);
+  font-weight: 400;
+  letter-spacing: 0.32px;
+  color: #555;
+  list-style-type: disc; /* Use disc for filled circles */
+  
+}
+
+.text-hint {
+  font-size: 16px !important;
+  text-align: center;
+  font-weight: 400;
+  letter-spacing: 0.32px;
+  color: #777;
+}
+#beginning {
+  display: flex;
+  height: 100vh; /* Full height of the viewport */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+.left-section,
+.right-section {
+  width: 50%;
+  display: flex;
+  flex-direction: column; /* Arrange children in a column */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+}
+
+/* Apply styles to text elements */
+.text-header {
+  font-weight: bold; /* Optional: make the header bold */
+}
+
+em {
+  font-style: italic;
+}
+
+#regression-tree-svg {
+  background-color: #ffffff;
+  border-radius: 25px;
+  border: 3px solid #555;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 2.5px rgba(0,0,0,0.1);
+}
+#tree-container {
+  width:fit-content;
+  height:fit-content;
+}
+#decision-tree {
+  display: flex;
+  height: fit-content; /* Full height of the viewport */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  background-color: var(--ccl-light-gray);
+  padding:50px
+}
+
+#regression-tree {
+  display: flex;
+  height: fit-content; /* Full height of the viewport */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  background-color: white;
+  padding:50px
+}
+
+#decision-tree-svg {
+  background-color: #ffffff;
+  border-radius: 25px;
+  border: 3px solid #555;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 2.5px rgba(0,0,0,0.1);
+}
+
+#c5 {
+  background-color: #DEF4C8;
+  width:fit-content;
+  width: 100vw;
+  overflow-y:auto;
+  overflow-x:auto;
+}
+#c5-tree-svg {
+  background-color: white;
+  border: 3px solid #555;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 2.5px rgba(0,0,0,0.1);
+    margin:auto;
+}
+
+.outro-body {
+	text-align:center;
+font-size: calc(0.4 * 1.2vw + 1rem);
+  font-weight: 400;
+  letter-spacing: 0.32px;
+  color: #777;
+  list-style-type: disc; /* Use disc for filled circles */	
+}
+
+#initial-roc-chart {
+  width:100%
+}
